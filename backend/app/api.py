@@ -1,7 +1,7 @@
 """
 Login Risk Intelligence API.
 Loads model on startup; exposes /predict, /dashboard/stats, /dashboard/recent.
-When STATIC_DIR is set (e.g. in Docker), serves built frontend on same port.
+When STATIC_DIR is set (e.g. in Docker), serves built frontend on the same port.
 """
 import os
 from collections import deque

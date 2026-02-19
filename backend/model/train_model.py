@@ -1,6 +1,7 @@
 """
 Training pipeline: load/generate data, preprocess, scale, train IF + RF, evaluate, save best.
 Produces model.pkl, scaler.pkl, feature_columns.pkl. Kept under ~10s and memory-light.
+Suitable for CI/CD and micro instances.
 """
 import os
 import sys

@@ -1,0 +1,10 @@
+---
+description: Do not commit or push; user does git themselves
+alwaysApply: true
+---
+
+# Git: User Commits and Pushes
+
+- **Do not run** `git commit` or `git push` (or `git add` with the intent to commit).
+- The user will stage, commit, and push to GitHub themselves.
+- You may run `git status`, `git diff`, or suggest commit messages and commands for the user to run.
