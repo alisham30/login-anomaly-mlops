@@ -60,7 +60,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -f Dockerfile -t login-anomaly-mlops .
+                    docker builder prune -af || true
+                    DOCKER_BUILDKIT=1 docker build -f Dockerfile -t login-anomaly-mlops .
                 '''
             }
         }
