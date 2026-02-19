@@ -7,8 +7,12 @@ __pycache__/
 venv/
 env/
 
-# Model artifacts (generated during pipeline)
+# Model artifacts (generated during CI/CD pipeline)
 model/*.pkl
+backend/model/*.pkl
+
+# Generated dataset (pipeline can regenerate via generate_data.py)
+backend/data/*.csv
 
 # Environment variables
 .env
@@ -19,3 +23,6 @@ Thumbs.db
 
 # Jenkins workspace (if ever generated locally)
 workspace/
+
+# Markdown (local notes / docs – not pushed)
+*.md

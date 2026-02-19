@@ -24,25 +24,40 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh '''
-                    python3 -m pip install --upgrade pip
-                    python3 -m pip install --user -r requirements.txt
-                '''
+                dir('backend') {
+                    sh '''
+                        python3 -m pip install --upgrade pip
+                        python3 -m pip install --user -r requirements.txt
+                    '''
+                }
             }
         }
 
         stage('Train ML Model') {
             steps {
-                sh '''
-                    python3 model/train_model.py
-                '''
+                dir('backend') {
+                    sh '''
+                        python3 model/train_model.py
+                    '''
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    sh '''
+                        npm ci
+                        npm run build
+                    '''
+                }
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    docker build -t login-anomaly-mlops .
+                    docker build -f Dockerfile -t login-anomaly-mlops .
                 '''
             }
         }
