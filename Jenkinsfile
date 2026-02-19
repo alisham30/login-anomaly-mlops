@@ -45,12 +45,15 @@ pipeline {
 
         stage('Build Frontend') {
             steps {
-                dir('frontend') {
-                    sh '''
-                        npm ci
-                        npm run build
-                    '''
-                }
+                sh '''
+                    # Build in /tmp to avoid EACCES in snap Jenkins workspace
+                    cp -r frontend /tmp/frontend-build
+                    cd /tmp/frontend-build
+                    npm ci
+                    npm run build
+                    cp -r dist "${WORKSPACE}/frontend/dist"
+                    cd "${WORKSPACE}"
+                '''
             }
         }
 
